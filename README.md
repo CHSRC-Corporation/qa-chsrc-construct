@@ -1,1 +1,0 @@
-# qa-chsrc-construct
