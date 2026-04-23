@@ -38,4 +38,12 @@ test('Validação de Senha', async (t) => {
   await t.test('deve rejeitar senha com apenas espaços em branco', () => {
     assert.strictEqual(isValidPassword('        '), false);
   });
+
+  await t.test('deve rejeitar senhas que contenham apenas números e letras', () => {
+    assert.strictEqual(isValidPassword('Password123'), false);
+  });
+
+  await t.test('deve rejeitar senhas com caracteres especiais mas sem números', () => {
+    assert.strictEqual(isValidPassword('Password!@#'), false);
+  });
 });

@@ -50,4 +50,16 @@ test('Fluxo de Login', async (t) => {
     const result = login('user@example.com', 'SecurePass123!');
     assert.strictEqual(result.user.password, undefined);
   });
+
+  await t.test('deve falhar ao fazer login com email nulo', () => {
+    const result = login(null, 'SecurePass123!');
+    assert.strictEqual(result.success, false);
+    assert.strictEqual(result.message, 'Email and password are required');
+  });
+
+  await t.test('deve falhar ao fazer login com senha nula', () => {
+    const result = login('user@example.com', null);
+    assert.strictEqual(result.success, false);
+    assert.strictEqual(result.message, 'Email and password are required');
+  });
 });

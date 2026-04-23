@@ -35,4 +35,16 @@ test('Validação de Email', async (t) => {
   await t.test('deve rejeitar emails sem extensão final de domínio', () => {
     assert.strictEqual(isValidEmail('user@example'), false);
   });
+
+  await t.test('deve rejeitar emails com múltiplos @', () => {
+    assert.strictEqual(isValidEmail('user@@example.com'), false);
+  });
+
+  await t.test('deve rejeitar emails que começam com ponto', () => {
+    assert.strictEqual(isValidEmail('.user@example.com'), false);
+  });
+
+  await t.test('deve rejeitar emails com caracteres especiais inválidos', () => {
+    assert.strictEqual(isValidEmail('user#name@example.com'), false);
+  });
 });
