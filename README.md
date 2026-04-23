@@ -16,6 +16,7 @@ To ensure compatibility across different environments and avoid Node.js version 
 ### Test Coverage
 
 The test suite covers the primary user flows:
+
 - **User Creation Page**: Validates the presence of all required input fields (Name, Email, Password), action buttons, and form validation logic.
 - **About Page**: Validates successful navigation to the `/sobre` route and correct rendering of page content.
 - **Layout & Responsiveness**: Verifies the application header and ensures elements are correctly displayed on mobile and tablet viewports.
