@@ -4,14 +4,12 @@ This repository contains the quality assurance and end-to-end testing suite for 
 
 ## Cypress E2E Testing Implementation
 
-To ensure compatibility across different environments and avoid Node.js version conflicts, the testing infrastructure is fully containerized using Docker.
+The tests run locally against the frontend application, without Docker.
 
 ### Infrastructure
 
-- **Docker**: Used to provide a consistent Node.js 20 environment.
-- **Docker Compose**: Manages two services:
-  - `app`: Builds and serves the application on port 3000.
-  - `cypress`: Runs the Cypress test suite against the `app` service.
+- **Vite**: Serves the application on port 3000 during local development.
+- **Cypress**: Runs the end-to-end test suite against `http://localhost:3000`.
 
 ### Test Coverage
 
@@ -25,26 +23,31 @@ The test suite covers the primary user flows:
 
 ### Prerequisites
 
-- Docker and Docker Compose installed on your machine.
+- Node.js 20+ and npm installed on your machine.
 
 ### Execution Steps
 
 1. Clone the repository.
-2. Start the application service:
+2. Install dependencies:
 
    ```bash
-   docker compose up -d app
+   npm install
    ```
 
-3. Run the E2E tests:
+3. Start the application:
 
    ```bash
-   docker compose run cypress
+   npm run dev
+   ```
+
+4. Run the E2E tests in another terminal:
+
+   ```bash
+   npm run cy:run
    ```
 
 ## Project Structure
 
-- `Dockerfile`: Application container configuration.
-- `docker-compose.yml`: Orchestration for app and testing services.
+- `vite.config.ts`: Vite application configuration.
 - `cypress.config.cjs`: Cypress configuration file.
 - `cypress/e2e/specs/`: Contains the test specifications.
